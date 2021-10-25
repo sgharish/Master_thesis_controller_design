@@ -71,8 +71,8 @@ orientation = [0 0 0;...
     pi pi/2 0]';
 
 % time for each waypoint
-t_f = 18000;
-waytime = 0:2000:t_f;
+t_f = 180;
+waytime = 0:20:t_f;
 
 %% trajectory parameters
 
@@ -93,7 +93,8 @@ waypointVels = 0.002 *[ 0  0.05  0;0.05 0 0;
 
  weights = [0.5 0.5 0.5 1 1 1];
 
-out =  sim('test_link_with_main.slx');
+ %out =  sim('unwork_link.slx');
 
-figure;
-plot(out.position.signals.values(:,1),out.position.signals.values(:,2),'r');
+%figure;
+%plot(out.desired.signals.values(:,1),out.desired.signals.values(:,2),'b');
+%plot(out.position.signals.values(:,1),out.position.signals.values(:,2),'r');
