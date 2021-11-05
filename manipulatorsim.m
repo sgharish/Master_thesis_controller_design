@@ -7,6 +7,7 @@ dh_parameter = [0.3 0 0 0; 0.31 0 0 0];
 
 %% Planar arm under study skeleton is 
 planar_arm = rigidBodyTree('DataFormat','row');
+planar_arm.Gravity = [0,9.8,0];
 
 %% link1 of the arm is
 link_1 = rigidBody('base1');
@@ -55,14 +56,14 @@ n = numel(home);
 waypointsmax =20;
 waypoints = [0 0.5 0;... % start point 
 0.05 0.5 0;
-0.10 0.5 0;
-0.15 0.5 0;
-0.20 0.5 0;
-0.25 0.5 0;
-0.30 0.5 0;
-0.35 0.5 0;
-0.35 0.35 0;
-0.25 0.35 0]';
+0.10 0.5 0]';
+% 0.15 0.5 0;
+% 0.20 0.5 0;
+% 0.25 0.5 0;
+% 0.30 0.5 0;
+% 0.35 0.5 0;
+% 0.35 0.35 0;
+% 0.25 0.35 0]';
 
 numWaypoints = size(waypoints);
  %orientation(these values are selected randomly)   
@@ -71,8 +72,8 @@ orientation = [0 0 0;...
     pi pi/2 0]';
 
 % time for each waypoint
-t_f = 180;
-waytime = 0:20:t_f;
+t_f = 200;
+waytime = 0:100:t_f;
 
 %% trajectory parameters
 
@@ -81,20 +82,61 @@ trajectoryT = 0:t:waytime(end);
 tn = numel(trajectoryT);
 %boundary conditions
 waypointVels = 0.002 *[ 0  0.05  0;0.05 0 0;
-                     0.05  0  0;
-                     0.05  0  0;
-                     0.05  0  0;
-                      0.05 0.05 0 ;
-                     0.05 0.05 0;
-                      0.05 0.05 0;
-                      0.05 0.05 0;
-                      0.05 0.05 0]';
+                     0.05  0  0]';
+                   %0.05  0  0;
+                    %0.05  0  0;
+                     % 0.05 0.05 0 ;
+                     %0.05 0.05 0;
+                      %0.05 0.05 0;
+                      %0.05 0.05 0;
+                      %0.05 0.05 0]';
            
 
  weights = [0.5 0.5 0.5 1 1 1];
 
- %out =  sim('unwork_link.slx');
+%  out =  sim('test_link_with_main.slx');
+% 
+%  [q,qd,qdd] = cubicpolytraj(waypoints,waytime,trajectoryT, ... 
+%            'VelocityBoundaryCondition',waypointVels);
+% figure(1);
+% subplot(2,1,1);
+% plot(q(2),q(:,2),'LineWidth',2);
+% hold on
+% title('Desired Path');
+% xlabel('x(m)');
+% ylabel('y(m)');
+% subplot(2,1,2);
+% plot(out.position.signals.values(:,1),out.position.signals.values(:,2),'LineWidth',2);
+% hold on
+% title('End effectors Path with Control Action');
+% xlabel('Position in X [m]');
+% ylabel('Position in Y [m]');
 
-%figure;
-%plot(out.desired.signals.values(:,1),out.desired.signals.values(:,2),'b');
-%plot(out.position.signals.values(:,1),out.position.signals.values(:,2),'r');
+
+% figure(2);
+% subplot(2,1,1);
+% plot(out.tout,out.jointangle.signals.values(:,1),'LineWidth',2);
+% hold on
+% title('Simulated Joint Angle');
+% xlabel('q[rad]');
+% ylabel('time[sec]');
+% subplot(2,1,2);
+% plot(out.tout,out.jointangle.signals.values(:,2),'LineWidth',2);
+% hold on
+% title('Simulated Joint Angle');
+% xlabel('q[rad]');
+% ylabel('time[sec]');
+% 
+% figure(3);
+% subplot(2,1,1);
+% plot(out.tout,out.v1.signals.values,'LineWidth',2);
+% hold on
+% title('Lyapunov Function for subsystem 1');
+% xlabel('V1');
+% ylabel('time[sec]');
+% subplot(2,1,1);
+% plot(out.tout,out.lf.signals.values,'LineWidth',2);
+% hold on
+% title('Lyapunov Function for System');
+% xlabel('V2');
+% ylabel('time[sec]');
