@@ -98,7 +98,7 @@ waypointVels = 0.002 *[ 0  0.05  0;0.05 0 0;
         'VelocityBoundaryCondition',waypointVels);
 
 %simulate the model
-out =  sim('test_link_with_main.slx');
+out =  sim('simlink_manipulator_MATLAB.slx');
  
 
 figure(2); 
