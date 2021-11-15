@@ -12,7 +12,7 @@
 This work is for the thesis and it based on the controller design by 'Adaptive backstepping trajectory tracking control of robot manipulator' Qinglei Hun, Liang Xu, Aihua Zhang
 Publiser: Journal of franklin institue.
 
-@files: manipulatorsim.m:
+manipulatorsim.m:
 "This is a .m file. In this file the model of the manipulator along with the path motion to generate the trajectory is defined. In addition this file can run the simulink file name 'simlink_manipulator_MATLAB.slx'"
 simlink_manipulator_MATLAB.slx: 
 "In this file the trajectory and controller of the model is implemented using the forward dynamics provided by MATLAB. The outputs of the simulink blocks are connected to the scope. The simulated path and error are send to the workspace of the matlab file 'manipulatorsim.m' so that it can be plotted and it will be easy to verify. "
