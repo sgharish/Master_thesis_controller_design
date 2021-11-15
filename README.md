@@ -1,5 +1,5 @@
 # Master_thesis_controller_design
-@files: manipulatorsim.m, simlink_manipulator_MATLAB.slx, simlink_manipulator_UD.slx
+@files: manipulatorsim.m, manipulatorsim_UD.m,simlink_manipulator_MATLAB.slx, simlink_manipulator_UD.slx
 
 @author: Harish Swaminathan Gopal
 
