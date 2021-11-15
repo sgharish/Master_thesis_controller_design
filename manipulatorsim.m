@@ -93,58 +93,33 @@ waypointVels = 0.002 *[ 0  0.05  0;0.05 0 0;
            
 
  weights = [0.5 0.5 0.5 1 1 1];
+%% same function as the trajectory block in simulink
+[q,qd,qdd] = cubicpolytraj(waypoints,waytime,trajectoryT, ... 
+        'VelocityBoundaryCondition',waypointVels);
 
-% [q,qd,qdd] = cubicpolytraj(waypoints,waytime,trajectoryT, ... 
- %           'VelocityBoundaryCondition',waypointVels);
+%simulate the model
+out =  sim('test_link_with_main.slx');
  
-%out =  sim('test_link_with_main.slx');
-% % 
-% 
-% % figure(1); 
-%plot(q(1,:),q(2,:),'LineWidth',2);
-% % hold on
-% title('Desired Path');
-% xlabel('x(m)');
-% ylabel('y(m)');
-% % subplot(2,1,2);
-%figure(2);
-%plot(out.position.signals.values(:,1),out.position.signals.values(:,2),'LineWidth',1);
-% % hold on
- %title('Simulated Path');
- %xlabel('Position in X (m)');
-%ylabel('Position in Y (m)');
 
-%figure(3);
-%plot(out.position.signals.values(:,1),out.position.signals.values(:,2),'LineWidth',1);
+figure(2); 
+plot(q(1,:),q(2,:),'LineWidth',2);
 % % hold on
- %title('Position tracking Error');
- %xlabel('Position in X (m)');
-%ylabel('Position in Y (m)');
-
-% figure(2);
-% subplot(2,1,1);
-% plot(out.tout,out.jointangle.signals.values(:,1),'LineWidth',2);
-% hold on
-% title('Simulated Joint Angle');
-% xlabel('q[rad]');
-% ylabel('time[sec]');
+ title('Desired Path');
+ xlabel('x(m)');
+ ylabel('y(m)');
 % subplot(2,1,2);
-% plot(out.tout,out.jointangle.signals.values(:,2),'LineWidth',2);
-% hold on
-% title('Simulated Joint Angle');
-% xlabel('q[rad]');
-% ylabel('time[sec]');
-% 
-% figure(3);
-% subplot(2,1,1);
-% plot(out.tout,out.v1.signals.values,'LineWidth',2);
-% hold on
-% title('Lyapunov Function for subsystem 1');
-% xlabel('V1');
-% ylabel('time[sec]');
-% subplot(2,1,1);
-% plot(out.tout,out.lf.signals.values,'LineWidth',2);
-% hold on
-% title('Lyapunov Function for System');
-% xlabel('V2');
-% ylabel('time[sec]');
+figure(3);
+plot(out.position.signals.values(:,1),out.position.signals.values(:,2),'LineWidth',1);
+% % hold on
+title('Simulated Path');
+xlabel('Position in X (m)');
+ylabel('Position in Y (m)');
+
+figure(4);
+plot(out.error.signals.values(:,1),out.error.signals.values(:,2),'LineWidth',1);
+% % hold on
+title('Position tracking Error');
+xlabel('Position in X (m)');
+ylabel('Position in Y (m)');
+
+
