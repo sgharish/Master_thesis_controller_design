@@ -3,7 +3,7 @@
 
 @author: Harish Swaminathan Gopal
 
-@softw: MATLAB, SIMULINK 
+@ide: MATLAB, SIMULINK 
 
 @toolbox: robotic system toolbox, control system toolbox
 
